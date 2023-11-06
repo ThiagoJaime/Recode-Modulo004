@@ -1,6 +1,9 @@
 package mainDAO;
 
 import factory.ConnectionFactory;
+import model.Clientes;
+import model.Destinos;
+import model.Promocoes;
 import model.Reserva;
 
 import java.sql.Connection;
@@ -14,7 +17,7 @@ public class ReservaDAO {
 
     // Inserção de Dados
     public void insertReserva(Reserva reserva) {
-        String sql = "INSERT INTO Reserva (cliente_id, promocao_id, destino_id, valor, data_ida, data_return) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Reserva (cliente_id, promocao_id, destino_id, valor, dataIda, dataRetorno) VALUES (?, ?, ?, ?, ?, ?)";
 
         Connection conn = null;
         PreparedStatement pstm = null;
@@ -27,9 +30,9 @@ public class ReservaDAO {
             pstm.setInt(2, reserva.getPromocao().getIdPromocao());
             pstm.setInt(3, reserva.getDestino().getIdDestino());
             pstm.setDouble(4, reserva.getValor());
-            pstm.setDate(5, new Date(reserva.getDataIda().getTime()));
-			pstm.setDate(6, new Date(reserva.getDataRetorno().getTime()));
-
+            pstm.setDate(5,  new Date(reserva.getDataIda().getTime()));
+            pstm.setDate(6, new Date(reserva.getDataRetorno().getTime()));  
+            
             pstm.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,8 +98,8 @@ public class ReservaDAO {
             pstm.setInt(2, reserva.getPromocao().getIdPromocao());
             pstm.setInt(3, reserva.getDestino().getIdDestino());
             pstm.setDouble(4, reserva.getValor());
-            pstm.setDate(5, new Date(reserva.getDataIda().getTime()));
-       		pstm.setDate(6, new Date(reserva.getDataRetorno().getTime()));;
+            pstm.setDate(5,  new Date(reserva.getDataIda().getTime()));
+            pstm.setDate(6, new Date(reserva.getDataRetorno().getTime()));  
             pstm.setInt(7, reserva.getIdReserva());
 
             pstm.execute();
@@ -119,9 +122,11 @@ public class ReservaDAO {
 
     // Exibição de Dados
     public List<Reserva> getAllReservas() {
-        String sql = "SELECT * FROM Reserva";
-
-        List<Reserva> reservas = new ArrayList<>();
+       
+        List<Reserva> Reserva = new ArrayList<Reserva>();
+        
+        String sql = "SELECT * FROM reserva JOIN destinos ON reserva.destino_id = destinos.id_destino JOIN promocoes ON reserva.promocao_id = promocoes.id_promocao JOIN clientes ON reserva.cliente_id = clientes.id_cliente ORDER BY id_reserva";
+        
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rset = null;
@@ -134,16 +139,36 @@ public class ReservaDAO {
             while (rset.next()) {
                 
             	Reserva reserva = new Reserva();
+                Destinos destino = new Destinos();
+            	Promocoes promocao = new Promocoes();
+                Clientes cliente = new Clientes();
                 
-            	reserva.setIdReserva(rset.getInt("id_reserva"));
-                reserva.setCliente(new ClientesDAO().getClienteById(rset.getInt("cliente_id")));
-                reserva.setPromocao(new PromocoesDAO().getPromocaoById(rset.getInt("promocao_id")));
-                reserva.setDestino(new DestinosDAO().getDestinoById(rset.getInt("destino_id")));
+                reserva.setIdReserva(rset.getInt("id_reserva"));
                 reserva.setValor(rset.getDouble("valor"));
-                reserva.setDataIda(rset.getDate("data_ida"));
-                reserva.setDataRetorno(rset.getDate("data_return"));
-
-                reservas.add(reserva);
+                reserva.setDataIda(rset.getDate("dataIda"));
+                reserva.setDataRetorno(rset.getDate("dataRetorno"));
+                
+            	destino.setIdDestino(rset.getInt("id_destino"));
+                destino.setPais(rset.getString("pais"));
+            	destino.setPreco(rset.getDouble("preco"));
+            	destino.setDuracao(rset.getInt("duracao"));
+            	
+            	cliente.setIdCliente(rset.getInt("id_cliente"));
+                cliente.setNome(rset.getString("nome"));
+                cliente.setEmail(rset.getString("email"));
+                cliente.setSenha(rset.getString("senha"));
+                cliente.setTelefone(rset.getString("telefone"));
+            	
+                promocao.setIdPromocao(rset.getInt("id_promocao"));
+                promocao.setPrecoPromo(rset.getDouble("preco_promo"));
+                promocao.setValidade(rset.getDate("validade"));
+                
+                reserva.setCliente(cliente);
+                reserva.setDestino(destino);
+                reserva.setPromocao(promocao);
+                
+                Reserva.add(reserva);
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -162,14 +187,14 @@ public class ReservaDAO {
                 e.printStackTrace();
             }
         }
-        return reservas;
+        return Reserva;
     }
 
     // Obter reserva por ID
     public Reserva getReservaById(int id) {
-        String sql = "SELECT * FROM Reserva WHERE id_reserva = ?";
-        Reserva reserva = null;
-
+        String sql = "SELECT * FROM reserva JOIN destinos ON reserva.destino_id = destinos.id_destino JOIN promocoes ON reserva.promocao_id = promocoes.id_promocao JOIN clientes ON reserva.cliente_id = clientes.id_cliente ORDER BY id_reserva";
+        
+        Reserva reserva = new Reserva();
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rset = null;
@@ -180,16 +205,36 @@ public class ReservaDAO {
             pstm.setInt(1, id);
             rset = pstm.executeQuery();
 
-            if (rset.next()) {
-                reserva = new Reserva();
-                reserva.setIdReserva(rset.getInt("id_reserva"));
-                reserva.setCliente(new ClientesDAO().getClienteById(rset.getInt("cliente_id")));
-                reserva.setPromocao(new PromocoesDAO().getPromocaoById(rset.getInt("promocao_id")));
-                reserva.setDestino(new DestinosDAO().getDestinoById(rset.getInt("destino_id")));
-                reserva.setValor(rset.getDouble("valor"));
-                reserva.setDataIda(rset.getDate("data_ida"));
-               reserva.setDataRetorno(rset.getDate("data_return"));
-            }
+             rset.next();    
+               
+             Destinos destino = new Destinos();
+         	Promocoes promocao = new Promocoes();
+             Clientes cliente = new Clientes();
+             
+             reserva.setIdReserva(rset.getInt("id_reserva"));
+             reserva.setValor(rset.getDouble("valor"));
+             reserva.setDataIda(rset.getDate("dataIda"));
+             reserva.setDataRetorno(rset.getDate("dataRetorno"));
+             
+         	destino.setIdDestino(rset.getInt("id_destino"));
+             destino.setPais(rset.getString("pais"));
+         	destino.setPreco(rset.getDouble("preco"));
+         	destino.setDuracao(rset.getInt("duracao"));
+         	
+         	cliente.setIdCliente(rset.getInt("id_cliente"));
+             cliente.setNome(rset.getString("nome"));
+             cliente.setEmail(rset.getString("email"));
+             cliente.setSenha(rset.getString("senha"));
+             cliente.setTelefone(rset.getString("telefone"));
+         	
+             promocao.setIdPromocao(rset.getInt("id_promocao"));
+             promocao.setPrecoPromo(rset.getDouble("preco_promo"));
+             promocao.setValidade(rset.getDate("validade"));
+             
+             reserva.setCliente(cliente);
+             reserva.setDestino(destino);
+             reserva.setPromocao(promocao);
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

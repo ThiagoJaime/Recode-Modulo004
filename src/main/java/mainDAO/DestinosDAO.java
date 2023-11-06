@@ -12,7 +12,7 @@ import java.util.List;
 public class DestinosDAO {
 
     public void insertDestino(Destinos destino) {
-        String sql = "INSERT INTO destinos (pais, preco, auracao) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO destinos (pais, preco, duracao) VALUES (?, ?, ?)";
 
         Connection conn = null;
         PreparedStatement pstm = null;
@@ -72,7 +72,7 @@ public class DestinosDAO {
     }
 
     public void updateDestino(Destinos destino) {
-        String sql = "UPDATE destinos SET pais = ?, preco = ?, auracao = ? WHERE id_destino = ?";
+        String sql = "UPDATE destinos SET pais = ?, preco = ?, duracao = ? WHERE id_destino = ?";
 
         Connection conn = null;
         PreparedStatement pstm = null;

@@ -9,7 +9,7 @@ public class Reserva {
 	private Promocoes promocao;
 	private Destinos destino;
 	private double valor;
-	private Date dataIda;
+	private Date  dataIda;
 	private Date dataRetorno;
 
 	
@@ -28,7 +28,7 @@ public class Reserva {
 		this.dataRetorno = dataRetorno;
 	}
 
-	// Construtor de Update
+	// Construtor de UpString
 	public Reserva(int idReserva, Clientes cliente, Promocoes promocao, Destinos destino, double valor, Date dataIda, Date dataRetorno) {
 		
 		this.idReserva = idReserva;
