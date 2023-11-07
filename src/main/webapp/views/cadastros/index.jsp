@@ -718,37 +718,10 @@
 		</div>
 	</div>
 
-
-
-
-
-	<!-- Modal Reservas -->
-	<!-- <div class="modal fade"id="reservasModal"tabindex="-1"aria-labelledby="reservasModalLabel"aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"
-                        id="staticBackdropLabel">Modal title</h5>
-                    <button type="button"class="btn-close"data-bs-dismiss="modal"aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    ...
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
-                    <button type="submit" class="btn btn-primary"> Understood </button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-
-	<script src="index.js"></script>
+	<script src="../assets/js/index.js"></script>
 
 	<a href="#" id="scrollToTopButton" class="scroll-to-top-button"
-		title="Voltar ao Topo"><img src="assets/images/home/tst.gif"
+		title="Voltar ao Topo"><img src="../assets/IMGs/home/tst.gif"
 		alt=""></a>
 
 	<script
