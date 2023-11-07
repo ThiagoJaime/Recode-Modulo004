@@ -82,8 +82,7 @@ a,a:hover,a:active,a:focus {
 }
 
 h1,h2,h3,h4,h5,h6 { 
-	
-	text-align: center;
+
 	margin: 0;
 	color:#222222;
 	text-transform: capitalize;
@@ -371,8 +370,9 @@ form > div {
 }/*.travel-select-icon .form-control*/
 
 
-
-
+.tab-content h2 {
+	text-align: center;
+}
 
 /*-------------------------------------
         5. Service
@@ -626,6 +626,12 @@ form > div {
     z-index: 1;
 }
 
+.special-offer:nth-child(4) {
+    background: url(../../assets/IMGs/offer/canada01.webp)no-repeat center;
+    background-size: cover;
+    z-index: 1;
+}
+
 .special-offer:after{
     position: absolute;
     content: "";
@@ -871,6 +877,7 @@ form > div {
     font-size:16px;
     font-weight: 600;
     margin-bottom:40px;
+    text-align:inherit;
 }/*single-footer-item*/
 
 /*footer-logo*/

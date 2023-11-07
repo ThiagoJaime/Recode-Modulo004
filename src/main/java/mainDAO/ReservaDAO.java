@@ -85,7 +85,7 @@ public class ReservaDAO {
 
     // Atualização de Dados
     public void updateReserva(Reserva reserva) {
-        String sql = "UPDATE Reserva SET cliente_id = ?, promocao_id = ?, destino_id = ?, valor = ?, data_ida = ?, data_return = ? WHERE id_reserva = ?";
+        String sql = "UPDATE Reserva SET cliente_id = ?, promocao_id = ?, destino_id = ?, valor = ?, dataIda = ?, dataRetorno = ? WHERE id_reserva = ?";
 
         Connection conn = null;
         PreparedStatement pstm = null;

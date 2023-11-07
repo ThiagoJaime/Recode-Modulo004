@@ -57,9 +57,11 @@ public class MainServelet extends HttpServlet {
 		case "/edit":
 			edit(request, response);
 			break;
-		
+		case "/delete":
+			delete(request, response);
+			break;
 		default:
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("../index.jsp");
 			break;
 		}
 
@@ -217,13 +219,12 @@ public class MainServelet extends HttpServlet {
 			   SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 			   
 			    res.setIdReserva(Integer.parseInt(request.getParameter("id")));
-		    	res.setCliente(cdao.getClienteById(Integer.parseInt(request.getParameter("cliente"))));
-		    	res.setPromocao(pdao.getPromocaoById(Integer.parseInt(request.getParameter("promocao"))));
+		    	res.setCliente(cdao.getClienteById(Integer.parseInt(request.getParameter("nome"))));
+		    	res.setPromocao(pdao.getPromocaoById(Integer.parseInt(request.getParameter("promo"))));
 		    	res.setDestino(destdao.getDestinoById(Integer.parseInt(request.getParameter("dest"))));
-		    	res.setCliente(cdao.getClienteById(Integer.parseInt(request.getParameter("cliente"))));
 	            res.setValor(Double.parseDouble(request.getParameter("valor")));     
-	           String dataIda = request.getParameter("dataIda");
-	           String dataVolta = request.getParameter("dataVolta");
+	           String dataIda = request.getParameter("ida");
+	           String dataVolta = request.getParameter("retorn");
 	            
 	            try {
 					res.setDataIda(date.parse(dataIda));
@@ -236,6 +237,35 @@ public class MainServelet extends HttpServlet {
 		
 		response.sendRedirect("./views/cadastros");
 	}
+	
+	protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String operacao = request.getParameter("operacao");
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		if("delCli".equals(operacao)) {
+			
+			cdao.deleteById(id);
+			
+		} else if ("delDes".equals(operacao)) {
+			
+			destdao.deleteDestino(id);
+			
+		} else if("delPromo".equals(operacao)) {
+			
+			pdao.deletePromocao(id);
+			
+		} else if("delRes".equals(operacao)) {
+			
+			resdao.deleteReserva(id);
+			
+		}
+		
+
+		response.sendRedirect("./views/cadastros");
+	}
+
 	
 	
 }

@@ -35,7 +35,7 @@
 			<jsp:param name="destinos" value="destinos.jsp" />
 			<jsp:param name="promocoes" value="promocoes.jsp" />
 			<jsp:param name="contato" value="contato.jsp" />
-			<jsp:param name="cadastro" value="cadastros.jsp" />
+			<jsp:param name="cadastro" value="views/cadastros" />
 	</jsp:include>
 
     <section id="spo"
@@ -108,7 +108,7 @@
                             <div class="single-special-shape-txt">
                                 <h3>OFERTA ESPECIAL</h3>
                                 <h4><span>40%</span><br>off</h4>
-                                <p><span>$999</span><br>Padrão $ 1450</p>
+                                <p><span>$999</span><br><s>Padrão $ 1450</s></p>
                             </div>
                         </div>
                     </div>
@@ -189,7 +189,7 @@
                             <div class="single-special-shape-txt">
                                 <h3>OFERTA ESPECIAL</h3>
                                 <h4><span>40%</span><br>off</h4>
-                                <p><span>$999</span><br>Padrão $ 1450</p>
+                                <p><span>$999</span><br><s>Padrão $ 1450</s></p>
                             </div>
                         </div>
                     </div>
@@ -207,7 +207,7 @@
                     <div class="col-sm-8">
                         <div class="single-special-offer">
                             <div class="single-special-offer-txt">
-                                <h2>Estados Unidos</h2>
+                                <h2>Canadá</h2>
                                 <div class="packages-review special-offer-review">
                                     <p>
                                         <i class="fa fa-star"></i>
@@ -268,7 +268,7 @@
                             <div class="single-special-shape-txt">
                                 <h3>OFERTA ESPECIAL</h3>
                                 <h4><span>40%</span><br>off</h4>
-                                <p><span>$999</span><br>Padrão $ 1450</p>
+                                <p><span>$999</span><br><s>Padrão $ 1450</s></p>
                             </div>
                         </div>
                     </div>

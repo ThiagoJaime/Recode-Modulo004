@@ -125,10 +125,10 @@
             <div class="gallery-details">
                 <div class="gallary-header text-center">
                     <h2>
-                        top destination
+                        Melhores Destinos
                     </h2>
                     <p>
-                        Duis aute irure dolor in velit esse cillum dolore eu fugiat nulla.
+                        Descubra os destinos mais incríveis para suas próximas aventuras!
                     </p>
                 </div><!--/.gallery-header-->
                 <div class="gallery-box">
@@ -137,7 +137,7 @@
                             <div class="row">
                                 <div class="col-md-6 d-flex justify-content-center">
                                     <div class="filtr-item">
-                                        <img src="assets/IMGs/gallary/g1.jpg"
+                                        <img src="assets/IMGs/gallary/ga01 (1).jpg"
                                              alt="portfolio image" />
                                         <div class="item-title">
                                             <a href="#">
@@ -150,7 +150,7 @@
 
                                 <div class="col-md-6 d-flex justify-content-center">
                                     <div class="filtr-item">
-                                        <img src="assets/IMGs/gallary/g2.jpg"
+                                        <img src="assets/IMGs/gallary/ga02.jpg"
                                              alt="portfolio image" />
                                         <div class="item-title">
                                             <a href="#">
@@ -163,7 +163,7 @@
 
                                 <div class="col-md-4 d-flex justify-content-center">
                                     <div class="filtr-item">
-                                        <img src="assets/IMGs/gallary/g3.jpg"
+                                        <img src="assets/IMGs/gallary/gall3.jpg"
                                              alt="portfolio image" />
                                         <div class="item-title">
                                             <a href="#">
@@ -176,7 +176,7 @@
 
                                 <div class="col-md-4 d-flex justify-content-center">
                                     <div class="filtr-item">
-                                        <img src="assets/IMGs/gallary/g3.jpg"
+                                        <img src="assets/IMGs/gallary/gall4.jpg"
                                              alt="portfolio image" />
                                         <div class="item-title">
                                             <a href="#">
@@ -189,11 +189,11 @@
 
                                 <div class="col-md-4 d-flex justify-content-center">
                                     <div class="filtr-item">
-                                        <img src="assets/IMGs/gallary/g3.jpg"
+                                        <img src="assets/IMGs/gallary/gall5.jpg"
                                              alt="portfolio image" />
                                         <div class="item-title">
                                             <a href="#">
-                                                netharland
+                                                Chile
                                             </a>
                                             <p><span>14 tours</span><span>12 places</span></p>
                                         </div>

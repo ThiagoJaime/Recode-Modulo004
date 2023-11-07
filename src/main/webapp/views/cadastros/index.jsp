@@ -36,55 +36,36 @@
 </head>
 
 <body>
-	
+
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-         style="margin-bottom: 0; background-color: #00d9ff0e !important;">
-        <div class="container-fluid">
-            <a class="img-thumbmail"
-               href="#">
-                <img src="../assets/IMGs/home/logo.webp"
-                     style="width: 400px;"
-                     class="rounded-pill"
-                     alt="NASA Airline">
-            </a>
-            <button class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse"
-                 id="navbarNav">
-                <ul class="navbar-nav align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           aria-current="page"
-                           href="../index.jsp">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="">Destinos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="">Promoções</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="">Contato</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="">Cadastros</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-	
+		style="margin-bottom: 0; background-color: #00d9ff0e !important;">
+		<div class="container-fluid">
+			<a class="img-thumbmail" href="#"> <img
+				src="../assets/IMGs/home/logo.webp" style="width: 400px;"
+				class="rounded-pill" alt="NASA Airline">
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav align-items-center">
+					<li class="nav-item"><a class="nav-link" aria-current="page"
+						href="../index.jsp">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="../destinos.jsp">Destinos</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="../promocoes.jsp">Promoções</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="../contato.jsp">Contato</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Cadastros</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
 	<!--travel-box start-->
 	<section class="travel-box">
 		<div class="container">
@@ -162,11 +143,88 @@
 											</div>
 										</div>
 										<div class="d-flex justify-content-center">
-											<button type="submit" class="btn bg-warning">Editar</button>
-											<button type="submit" class="btn ms-2 bg-danger">Excluir</button>
+											<button type="submit" class="btn bg-warning"
+												data-bs-toggle="modal"
+												data-bs-target="#modalResEdit${R.idReserva}">Editar</button>
+											<form action="../delete"
+												onsubmit="return confirm('Deseja excluir o cliente ${R.idReserva} ?')">
+												<input type="hidden" name="id" value="${R.idReserva}">
+												<input type="hidden" name="operacao" value="delRes">
+												<button type="submit" class="btn ms-2 bg-danger">Excluir</button>
+											</form>
 										</div>
 										<hr>
 										<br>
+
+										<!-- Modal Reservas -->
+										<div class="modal fade" id="modalResEdit${R.idReserva}"
+											tabindex="-1" aria-labelledby="exampleModalLabel"
+											aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+
+													<div class="modal-body">
+														<form action="../edit">
+															<input type="hidden" name="operacao" value="editRes">
+															<h2 class="text-center">Editar Reserva</h2>
+															<input type="hidden" id="id" name="id"
+																class="form-control" value="${R.idReserva}" />
+															<div class="form-group mb-3">
+																<label for="nome" class="form-label"> Cliente: </label>
+																<input type="text" id="nome" name="nome"
+																	class="form-control" value="${R.cliente.idCliente}"
+																	readonly />
+															</div>
+
+															<div class="form-group mb-3">
+																<label for="promo" class="form-label"> Promoção:
+																</label> <input type="text" id="promo" name="promo"
+																	class="form-control" value="${R.promocao.idPromocao}"
+																	readonly />
+															</div>
+
+															<div class="form-group mb-3">
+																<label for="dest" class="form-label"> Destino: </label>
+																<input type="text" id="dest" name="dest"
+																	class="form-control" value="${R.destino.idDestino}"
+																	readonly />
+															</div>
+
+															<div class="form-group mb-3">
+																<label for="valor" class="form-label"> Valor: </label> <input
+																	type="text" id="valor" name="valor"
+																	class="form-control"
+																	value="${R.valor - R.promocao.precoPromo}" />
+															</div>
+
+															<div class="form-group mb-3">
+																<label for="ida" class="form-label"> Data Ida: </label>
+																<input type="date" id="ida" name="ida"
+																	class="form-control" value="${R.dataIda}" />
+															</div>
+
+															<div class="form-group mb-3">
+																<label for="retorn" class="form-label"> Data
+																	Volta: </label> <input type="date" id="retorn" name="retorn"
+																	class="form-control" value="${R.dataRetorno}" />
+															</div>
+
+															<button type="submit" class="btn btn-primary">Enviar</button>
+															<a class="btn btn-danger" data-bs-dismiss="modal"
+																aria-label="Close" style="margin-left: 10px">
+																Cancelar </a>
+														</form>
+													</div>
+
+												</div>
+											</div>
+										</div>
+
+
 									</jstl:forEach>
 								</div>
 								<div role="tabpanel" class="tab-pane" id="promocoes">
@@ -192,15 +250,22 @@
 
 											<div class="d-flex justify-content-center">
 												<button type="submit" data-bs-toggle="modal"
-												data-bs-target="#modalPromoEdit${P.idPromocao}" class="btn bg-warning">Editar</button>
-												<button type="submit" class="btn ms-2 bg-danger">Excluir</button>
+													data-bs-target="#modalPromoEdit${P.idPromocao}"
+													class="btn bg-warning">Editar</button>
+												<form action="../delete"
+													onsubmit="return confirm('Deseja excluir o cliente ${P.idPromocao} ?')">
+													<input type="hidden" name="id" value="${P.idPromocao}">
+													<input type="hidden" name="operacao" value="delPromo">
+													<button type="submit" class="btn ms-2 bg-danger">Excluir</button>
+												</form>
 											</div>
 										</div>
 										<hr>
 										<br>
 
-										<div class="modal fade" id="modalPromoEdit${P.idPromocao}" tabindex="-1"
-											aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal fade" id="modalPromoEdit${P.idPromocao}"
+											tabindex="-1" aria-labelledby="exampleModalLabel"
+											aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
@@ -211,7 +276,7 @@
 													<div class="modal-body">
 														<form action="../edit">
 															<input type="hidden" name="operacao" value="editPromo">
-															<h2 class="text-center">Cadastrar Promoção</h2>
+															<h2 class="text-center">Editar Promoção</h2>
 															<input type="hidden" id="id" name="id"
 																class="form-control" value="${P.idPromocao}" />
 															<div class="form-group mb-3">
@@ -223,7 +288,8 @@
 															<div class="form-group mb-3">
 																<label for="validade" class="form-label">
 																	Validade </label> <input type="date" id="validade"
-																	name="validade" class="form-control" value="${P.validade}" />
+																	name="validade" class="form-control"
+																	value="${P.validade}" />
 															</div>
 
 															<button type="submit" class="btn btn-primary">Enviar</button>
@@ -272,7 +338,12 @@
 												<button type="submit" data-bs-toggle="modal"
 													data-bs-target="#modalDestEdit${D.idDestino}"
 													class="btn bg-warning">Editar</button>
-												<button type="submit" class="btn ms-2 bg-danger">Excluir</button>
+												<form action="../delete"
+													onsubmit="return confirm('Deseja excluir o cliente ${D.idDestino} ?')">
+													<input type="hidden" name="id" value="${D.idDestino}">
+													<input type="hidden" name="operacao" value="delDes">
+													<button type="submit" class="btn ms-2 bg-danger">Excluir</button>
+												</form>
 											</div>
 										</div>
 										<hr>
@@ -291,7 +362,7 @@
 													<div class="modal-body">
 														<form action="../edit">
 															<input type="hidden" name="operacao" value="editDest">
-															<h2 class="text-center">Cadastrar Destino</h2>
+															<h2 class="text-center">Editar Destino</h2>
 															<input type="hidden" id="id" name="id"
 																class="form-control" value="${D.idDestino}" />
 															<div class="form-group mb-3">
@@ -367,7 +438,12 @@
 											<button type="submit" data-bs-toggle="modal"
 												data-bs-target="#modalCliEdit${C.idCliente}"
 												class="btn bg-warning">Editar</button>
-											<button type="submit" class="btn ms-2 bg-danger">Excluir</button>
+											<form action="../delete"
+												onsubmit="return confirm('Deseja excluir o cliente ${C.idCliente} ?')">
+												<input type="hidden" name="id" value="${C.idCliente}">
+												<input type="hidden" name="operacao" value="delCli">
+												<button type="submit" class="btn ms-2 bg-danger">Excluir</button>
+											</form>
 										</div>
 										<hr>
 										<br>

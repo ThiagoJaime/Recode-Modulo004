@@ -38,7 +38,7 @@
 		<jsp:param name="destinos" value="destinos.jsp" />
 		<jsp:param name="promocoes" value="promocoes.jsp" />
 		<jsp:param name="contato" value="contato.jsp" />
-		<jsp:param name="cadastro" value="cadastros.jsp" />
+		<jsp:param name="cadastro" value="views/cadastros" />
 	</jsp:include>
 
 	<section class="get-in-touch">
